@@ -1,5 +1,253 @@
 ## 이름 :  함승현
 ---
+## 강의날짜 : 2023-04-06
+---
+## 학습내용 :
+* 행과 열에 이름 붙이기
+~~~R
+> score <- matrix(c(90,85,69,78,85,96,49,95,90,80,70,60),
++ nrow=4)
+> score
+     [,1] [,2] [,3]
+[1,]   90   85   90
+[2,]   85   96   80
+[3,]   69   49   70
+[4,]   78   95   60
+
+
+
+> rownames(score) <- c('john','tom','mark','jane')
+> colnames(score) <- c('english','math','science')
+> score
+     english math science
+john      90   85      90
+tom       85   96      80
+mark      69   49      70
+jane      78   95      60
+
+
+
+> score['john','math']
+[1] 85
+> score['tom',c('math','science')]
+   math science 
+     96      80 
+> score['mark']
+[1] NA
+> score['mark',]
+english    math science 
+     69      49      70 
+> score[,'english']
+john  tom mark jane 
+  90   85   69   78 
+> rownames(score)
+[1] "john" "tom"  "mark" "jane"
+> colnames(score)
+[1] "english" "math"    "science"
+> colnames(score)[2]
+[1] "math"
+
+
+> city <- c("seoul", "tokyo","washington")
+> rank <- c(1,3,2)
+> city.info <- data.frame(city, rank)
+> city.info
+        city rank
+1      seoul    1
+2      tokyo    3
+3 washington    2
+
+
+> iris[1:5,c(1,3)]
+  Sepal.Length Petal.Length
+1          5.1          1.4
+2          4.9          1.4
+3          4.7          1.3
+4          4.6          1.5
+5          5.0          1.4
+
+
+
+> colSums(iris[,-5])
+Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
+       876.5        458.6        563.7        179.9 
+
+#행열을 변화하는 t() 함수
+> z <- matrix(1:20, nrow=4,ncol=5)
+> z
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    5    9   13   17
+[2,]    2    6   10   14   18
+[3,]    3    7   11   15   19
+[4,]    4    8   12   16   20
+> t(z)
+     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8
+[3,]    9   10   11   12
+[4,]   13   14   15   16
+[5,]   17   18   19   20
+
+> IR.1 <- subset(iris, Species == 'setosa')
+> IR.1
+
+# 매트릭스와 데이터프레임에 함수 적용
+> a <- matrix(1:20,4,5)
+> b <- matrix(21:40,4,5)
+> a
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    5    9   13   17
+[2,]    2    6   10   14   18
+[3,]    3    7   11   15   19
+[4,]    4    8   12   16   20
+> b
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   21   25   29   33   37
+[2,]   22   26   30   34   38
+[3,]   23   27   31   35   39
+[4,]   24   28   32   36   40
+> a*b
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   21  125  261  429  629
+[2,]   44  156  300  476  684
+[3,]   69  189  341  525  741
+[4,]   96  224  384  576  800
+
+# 매트릭스와 데이터프레임의 자료구조 확인하기
+> class(iris)
+[1] "data.frame"
+> class(state.x77)
+[1] "matrix" "array" 
+> is.matrix(iris)
+[1] FALSE
+> is.data.frame(iris)
+[1] TRUE
+> is.matrix(state.x77)
+[1] TRUE
+> is.data.frame(state.x77)
+[1] FALSE
+
+> st <- data.frame(state.x77)
+> is.matrix(st)
+[1] FALSE
+
+# 데이터 프레임을 매트릭스로 변환
+> is.data.frame(iris[,1:4])
+[1] TRUE
+> iris.m <- as.matrix(iris[,1:4])
+> head(iris.m)
+     Sepal.Length Sepal.Width Petal.Length Petal.Width
+[1,]          5.1         3.5          1.4         0.2
+[2,]          4.9         3.0          1.4         0.2
+[3,]          4.7         3.2          1.3         0.2
+[4,]          4.6         3.1          1.5         0.2
+[5,]          5.0         3.6          1.4         0.2
+[6,]          5.4         3.9          1.7         0.4
+> class(iris.m)
+[1] "matrix" "array" 
+
+
+> age <- c(28,17,35,46,23,67,30,50)
+> age
+[1] 28 17 35 46 23 67 30 50
+> young <-min(age)
+> old <-max(age)
+> cat(young,old)
+17 67
+
+##########
+#install.packages('svDialogs')
+library(svDialogs)
+user.input <- dlgInput('Input income')$res
+user.input
+income <- as.numeric(user.input)
+income
+tax <- income * 0.05
+cat('세금:', tax)
+
+~~~
+
+* print()함수와 cat()함수
+~~~R
+> result
+[1] 14.14214
+
+> x <- 26
+> y <- '입니다'
+> z <- c(10,20,30,40)
+> print(x)
+[1] 26
+> print(y)
+[1] "입니다"
+> print(iris[1:5,])
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+> print(x,y)
+Error in print.default(x, y) : invalid printing digits -2147483648
+In addition: Warning message:
+In print.default(x, y) : NAs introduced by coercion
+
+> cat(x,y)
+26 입니다
+
+~~~
+* 작업폴더 : 자신이 읽거나 쓰고자 하는 파일이 위치하는 폴더
+
+* csv 파일 읽기와 쓰기
+
+~~~R
+> getwd()
+[1] "C:/Users/seung/Documents"
+> air <- read.csv('airquality.csv', header=T)
+> head(air)
+  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6
+> class(air)
+[1] "data.frame"
+
+> my.iris <- subset(iris, Species == 'setosa')
+> head(my.iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+# 파일만들기 csv
+> write.csv(my.iris, 'my_iris.csv', row.names=F) #행 이름 없는 상태
+
+
+
+install.packages('xlsx')
+library('xlsx')
+air <- read.xlsx('C:/Users/seung/Documents/airquality.xlsx'), header=T,
+sheetIndex=1)
+head(air)
+
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+---
 ## 강의날짜 : 2023-03-30
 ---
 ## 학습내용 :
