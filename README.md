@@ -1,5 +1,145 @@
 ## 이름 :  함승현
 ---
+## 강의날짜 : 2023-04-13
+---
+## 학습내용 :
+
+~~~R
+a <- 10; b<-20
+sink('result.txt', append=T)
+cat('a+b=', a+b, '\n')
+sink()
+* 출력할 파일이름에 값이 나옴
+
+> airquality.txt
+head(air)
+View(air)
+
+# if_else문 
+job.type <- 'a'
+if(job.type == 'b') {
+  bonus <- 200
+}else{
+  bonus <- 100
+}
+print(bonus)
+
+
+a <- 10
+b <- 20
+if(a > 5 & b >5) {
+  print(a+b)
+}
+if(a > 5 | b >5) {
+  print(a+b)
+}
+
+# ifelse문 조건에 따라 선택할 값이 각각 하나씩이면 이용하는 것이 편리
+
+c <- ifelse(a>b, a,b)
+print(c)
+[1] 20
+
+# for문 
+# 반복 범위는 반복 변수에 할당할 값을 모아둔 벡터
+> for(i in 1:5){
++   print('*')
++ }
+[1] "*"
+[1] "*"
+[1] "*"
+[1] "*"
+[1] "*"
+
+# 구구단
+for( i in 1:3) {
+  cat('2 *', i,'=', 2*i, '\n')
+}
+
+# while문
+sum <- 0
+i <- 1
+while(i <-100) {
+  sum <- sum  + i
+  i <- i +1
+}
+print(sum)
+
+# apply() 계열 함수
+(데이터셋, 행/열 방향 지정, 적용함수)
+
+apply(iris[,1:4], 1, mean)    
+# 행 방향으로 함수 적용
+apply(iris[,1:4], 2, mean)    
+# 열 방향으로 함수 적용
+
+# 사용자 정의 함수의 개념
+#사용자가 스스로 만드는 함수
+mymax <- function(x,y) {
+  num.max <- x
+  if (y >x){
+    num.max <- y
+  }
+  return(num.max)
+}
+
+mymax (10, 15)
+a <- mymax(20, 15)
+b <- mymax(31, 45)
+print(a+b)
+
+
+
+
+mydiv <- function(x,y=2) {
+  result <- x/y
+  return(result)
+}
+
+getwd()
+### source('mydiv.r')  디렉토리에 있어야~~
+source('mydiv.r')
+
+a <- mydiv(x=10, y=3)
+b <- mydiv(10,3)
+c <- mydiv(0)
+
+print(a)
+print(b)
+print(c)
+
+#which문  데이터 분석을 하다보면 어디에 위치하는디 알아야 할 떄가 있음
+> score <- c(76,84,69,50,95)
+> which(score==69)
+[1] 3
+> which(score>=85)
+[1] 5
+> max(score)
+[1] 95
+> which.max(score)
+[1] 5
+> min(score)
+[1] 50
+> which.min(score)
+[1] 4
+
+> idx <- which(score <=60)
+> score[idx] <- 61
+> score
+[1] 76 84 69 61 95
+> 
+> idx <- which(score <=80)
+> score.high <- score[idx] 
+> score.high
+[1] 76 69 61
+
+
+
+~~~
+
+
+
+---
 ## 강의날짜 : 2023-04-06
 ---
 ## 학습내용 :
