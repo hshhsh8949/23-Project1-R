@@ -94,7 +94,50 @@ pie(table(mtcars$cyl),
         radius=2)
 
 par(mfrow=c(1,1), mar=c(5,4,4,2)+.1)
+#4분면 초기화
+
+
 # save할때는 확장자를 미리 정해주고 저장 할것
+
+# barplot , hist , par
+# 함수 3개 
+
+
+# 원그래프 선그래프 그리기
+# 원그래프 작성
+favorite <- c('WINTER,  SUMMER','FALL', 'SUMMER', 'SPRING', 'SPRING')
+ds <- table(favorite) # 도수 분포표 저장
+ds  # 도수분포표 내용 확인
+
+pie(ds, main='선호 계절', radius=1)
+# 똑같이 컬러값 지정 가능
+
+#3D로 변경
+install.packages('plotrix')
+library(plotrix)
+pie3D(ds, main='선호 계절', radius=1)
+
+explode = 1  # 원그래프 간의 간격
+
+# 선그래프 작성
+month = 1:12
+late = c(5,8,7,9,4,6,12,13,8,6,6,4)
+plot(month,
+     late,
+     main='지각생 통계',
+     type='l',   #그래프 종류 선택(알파벳)
+     lty=1,    #선의 종류 선택
+     lwd=1,    #선의 굵기 선택
+     xlab='month',
+     ylab='Late cnt')
+
+
+
+
+
+
+
+
 
 
 
