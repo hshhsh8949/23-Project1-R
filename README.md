@@ -4,6 +4,116 @@
 ---
 ## 학습내용 :
 
+* 막대그래프 작성의 기초
+* 도수분포표 계산하기
+~~~r
+favorite <- c('WINTER,  SUMMER','FALL', 'SUMMER', 'SPRING', 'SPRING')
+favorite
+table(favorite)
+
+
+ds <- table(favorite) # 도수 분포표 저장
+ds  # 도수분포표 내용 확인
+barplot(ds, main = 'Favorite season' col = 'red')    #막대그래프 나옴
+
+
+barplot(ds, main = 'Favorite season', col = c('red', 'blue'  ), xlab='계절', ylab='빈도수' )  
+  #막대그래프 나옴   색깔을 차례로 넣을수도 있다.
+
+xlab='계절'  # x축 설명
+ ylab='빈도수' # y축 설명
+
+horiz = true   # 수평
+names=c('FA','SP','SU','WI')  # 네임 변경
+las = 2  # 그룹이름을 수직으로 변경  3까지 있음
+
+
+#중첩 그래프 
+age.A <- c(13709,10974,7979,5000,4250)
+age.B <- c(17540,29701,36209,33947,24487)
+age.C <- c(991,2195,5366,12980,19007)
+
+ds <- rbind(age.A,age.B ,age.C)
+colnames(ds) <- c('1970','1990','2010','2030','2050')
+ds
+barplot(ds, main='인구 추정', col=rainbow(3), beside=TRUE,legend.text=TRUE,args.legend = list(x='topright', bty='n', inset=c(-0.25,0)))
+
+
+beside=TRUE #그래프가 옆으로 누움
+legend.Text = TRUE #색인
+args.legend = list(x='topright', bty='n', inset=c(-0.25,0))  # 위치를 바꿀수 있다.
+par(mfrow=c(1,1), mar=c(5,5,5,7))
+
+
+# 범례 내용 바꾸기   legend.text
+barplot(ds, main='인구 추정', col=rainbow(3), beside=TRUE,
+        legend.text = c('0~14세','14~64세','65세이상')  ,
+        args.legend = list(x='topright', 
+        bty='n', inset=c(-0.25,0))   
+          )
+
+#히스토그램
+head(cars)
+dist <- cars[,2]     #자동차 제동거리
+dist
+hist(dist,           #데이타
+     main = 'Histogram for 제동거리',   #제목
+     xlab ='제동거리',    #x축축
+     ylab = '빈도수',#y축
+     border='blue', 
+     col='green',
+     las=2,
+     breaks=5)   #막대개수조절절
+
+# 매개변수
+border='blue' 
+
+freq <- result$counts  #구간별 빈도수 저장
+names(freq) <- result$breaks[-1]   #구간값을 이름으로 지정
+freq    # 구간별 빈도수 출력
+
+#그래프 4분면 표시
+par(mfrow=c(2,2), mar=c(3,3,4,2))
+
+hist(iris$Sepal.Length,
+     main='sepal.length',
+     col='orange')
+
+barplot(table(mtcars$cyl),
+        main='mtcars',
+        col=c('red','green','blue'))
+
+barplot(table(mtcars$gear),
+        main='mtcars',
+        col=rainbow(3),
+        horiz=TRUE)
+
+pie(table(mtcars$cyl),
+        main='mtcars',
+        col=topo.colors(3),
+        radius=2)
+
+par(mfrow=c(1,1), mar=c(5,4,4,2)+.1)
+# save할때는 확장자를 미리 정해주고 저장 할것
+
+
+
+
+
+~~~
+
+
+  
+
+
+
+
+
+---
+## 강의날짜 : 2023-04-13
+---
+## 학습내용 :
+
 ~~~R
 a <- 10; b<-20
 sink('result.txt', append=T)
