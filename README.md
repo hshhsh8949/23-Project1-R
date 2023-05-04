@@ -1,5 +1,137 @@
 ## 이름 :  함승현
 ---
+## 강의날짜 : 2023-05-04
+---
+## 학습내용 :
+~~~r
+# 다중 선그래프 작성
+month = 1:12
+late = c(5,8,7,9,4,6,12,13,8,6,6,4)
+late2 = c(4,6,5,7,8,10,2,8,4,12,3,20)
+plot(month,
+     late,
+     main='지각생 통계',
+     type='b',
+     lty=6,
+     lwd=1,
+     color='red',
+     xlab='month',
+     ylab='Late cnt')
+
+lines(month, 
+      late2,
+      type ='b',
+      color='blue'
+      )
+
+dist <- cars[,2]
+boxplot(dist, mian='자동차 제동거리리')
+
+> boxplot.stats(dist)
+$stats
+[1]  2 26 36 56 93
+
+$n
+[1] 50
+
+$conf
+[1] 29.29663 42.70337
+
+$out
+[1] 120
+
+boxplot(Petal.Length~Species,        #데이터와 그룹정보보
+        data=iris,                   #
+        main='품종별 꽃잎의 길이',   #
+        col=c('green','yellow','blue')) #
+
+#산점도 
+# 다중변수 데이터에서 두 변수에 포함된 값들을 2차원 그래프상에 점으로 표현하여 분포를 관할 수 있도록 하는 도구
+
+wt <- mtcars$wt
+mpg <- mtcars$mpg
+plot(wt, mpg,
+     main='중량-연비 그래프',
+     xlab='중량',
+     ylab='연비',
+     col='red',
+     pch=19
+     )
+
+
+
+vars <- c('mpg','disp','drat','wt')
+target <- mtcars[,vars]
+head(target)
+plot(target, 
+     main='Multi plots')
+
+
+
+
+group <- as.numeric(iris$Species)
+group
+
+plot(iris.2,
+     main='iris plot',
+     pch=c(group),
+     col=color[group])
+
+
+#산점도  iris.2 
+iris.2 <- iris[,3:4]
+levels(iris$Species)
+
+group <- as.numeric(iris$Species)
+group
+color <- c('red', 'green','blue')
+plot(iris.2,
+     main='iris plot',
+     pch=c(group),
+     col=color[group])
+
+legend(x='bottomright',
+       legend=levels(iris$Species),
+       col=c('red','green','blue'),
+       pch=c(1:3))  # 점의 모양
+
+
+#10장  데이터 탐색하기
+
+#단일변수 범주형 데이터 분석
+install.packages('carData')
+library(carData)
+
+# (1) 데이터 준비 
+room.class <- TitanicSurvival$passengerClass
+room.class
+
+# (2) 데이터 준비 
+tb1 <- table(room.class)
+tb1
+sum(tb1)     # 전체 탑승 객수수
+
+# (3) 막대 그래프 생성
+barplot(tb1, main='선실별 탑승객',
+     xlab = '선싱 등급',
+     ylab = '탑승객수',
+     col=c('red','green','blue'))
+#(4)원그래프 작성
+tb1/sum(tb1)
+par(mar=c(1,1,4,1))
+pie(tb1, main='선실별 탑승객',
+    col=c('red','green','blue'))
+par(mar=c(5.1,4.1,4.1,2.1))
+
+
+
+
+
+
+
+~~~
+
+---
 ## 강의날짜 : 2023-04-27
 ---
 ## 학습내용 :
