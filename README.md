@@ -1,5 +1,109 @@
 ## 이름 :  함승현
 ---
+## 강의날짜 : 2023-05-11
+---
+## 학습내용 :
+~~~r
+#다중 변수 데이터를 분석
+
+#pressure 데이터셋을 통해 온도와 기압의 관련성 분석
+head(pressure)
+
+plot(pressure$temperature,
+     pressure$pressure,
+     main='온도와 기압',
+     xlab = '온도(화씨)',
+     ylab = '기압')
+
+#상관계수  -1에서 1사이의 값
+
+head(cars)
+
+plot(cars$speed,
+     cars$dist,
+     main='자동차속도와 제동거리',
+     xlab = '속도',
+     ylab = '제동거리')
+
+#상관계수
+cor(cars$speed, cars$dist)
+# 0.8068949
+
+st <- data.frame(state.x77)
+head(st)
+#다중 산점도 
+plot(st)
+#다중 상관계수
+cor(st)
+
+
+#데이터 전처리
+z <- c(1,2,3,NA,5,NA,8)  #결측값이 포함된 벡터 z
+sum(z)  #정상 계산이 되지 않음  [1] NA
+is.na(z) # NA 여부를 확인 [1] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE 
+sum(is.na(z)) #NA의 개수 확인 [1] 2
+sum(z, na.rm = TRUE) # [1] 19
+
+
+
+z1 <- c(1,2,3,NA,5,NA,8)   #결측값이 포함된 벡터
+z2 <- c(5,8,1,NA,3,NA,7)    #''
+z1[is.na(z1)] <- 0     #NA를 0로 치환
+z1  #[1] 1 2 3 0 5 0 8
+
+z3 <- as.vector(na.omit(z2)) #NA를 제거하고 새로운 벡터 생성 
+z3  #[1] 5 8 1 3 7
+
+
+x <- iris
+x[1:2] <- NA; x[1,3] <-NA
+x[2:3] <- NA; x[3,4] <-NA
+head(x)
+
+#for문 사용 
+for(i in 1:ncol(x)) {
+  this.na <- is.na(x[,i])
+  cat(colnames(x)[i], '\t', sum(this.na), '\n')
+}
+#값
+Sepal.Length 	 150 
+Sepal.Width 	 150 
+Petal.Length 	 150 
+Petal.Width 	 1 
+Species 	 0 
+
+#apply 함수 사용
+col_na <- function(y){
+  return(sum(is.na(y)))
+}
+na_count <- apply(x, 2, FUN = col_na)
+na_count
+
+
+ rowSums(is.na(x))  # 행별 NA 개수
+  [1] 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ [35] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ [69] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+[103] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+[137] 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ sum(rowSums(is.na(x)) >0)  # Na가 포함된 행의 개수
+[1] 150
+ sum(is.na(x))
+[1] 451
+
+#매트릭스와 데이터프레임의 결측값
+head(x)
+x[!complete.cases(x),]  #NA가 포함된 행들을 나타냄
+y <- x[complete.cases(x),] # NA가 포함된 행들을 제거
+head(y)
+
+
+
+~~~
+
+
+
+---
 ## 강의날짜 : 2023-05-04
 ---
 ## 학습내용 :
