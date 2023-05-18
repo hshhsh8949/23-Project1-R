@@ -1,5 +1,106 @@
 ## 이름 :  함승현
 ---
+## 강의날짜 : 2023-05-18
+---
+## 학습내용 :
+~~~r
+#정렬
+v1 <- c(1,7,6,8,4,2,3)
+v1 <- sort(v1)   #오름차순
+v1 [1] 1 2 3 4 6 7 8
+v2 <- sort(v1, decreasing=T)   #내림차순
+v2 [1] 8 7 6 4 3 2 1
+
+name <- c('정대일','강제구', '신현석', '홍길동')
+sort(name)
+# 값 : "강제구" "신현석" "정대일" "홍길동"
+
+> order(name)   #인덱스 값가지고 정렬
+[1] 2 3 1 4
+
+> order(name, decreasing=T)  #내림차순
+[1] 4 1 3 2
+
+> idx <- order(name)
+> name[idx]
+[1] "강제구" "신현석" "정대일" "홍길동"
+
+head(iris)
+order(iris$Sepal.Length)
+iris[order(iris$Sepal.Length),]
+iris[order(iris$Sepal.Length), decreasing=T),]
+
+iris.new <- iris[order(iris$Sepal.Length),]
+head(iris.new)
+
+#샘플링
+x <- 1:100
+y <- sample(x, size=10, replace=FALSE)
+y
+ [1] 74 96 38 77 93 34  4 40 98 60
+ #랜덤 함수
+
+
+ idx <- sample(1:nrow(iris), size=50, replace=F)
+iris.50 <- iris[idx,]
+dim(iris.50)   #[1] 50  5
+head(iris.50)
+#  Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+31          4.8         3.1          1.6         0.2     setosa
+86          6.0         3.4          4.5         1.6 versicolor
+76          6.6         3.0          4.4         1.4 versicolor
+49          5.3         3.7          1.5         0.2     setosa
+37          5.5         3.5          1.3         0.2     setosa
+54          5.5         2.3          4.0         1.3 versicolor
+
+~~~
+~~~r
+sample(1:20 ,size=5)
+set.seed(100)
+
+x <- c("red","green","blue","black","white")
+com <- combn(x,2)
+com
+
+for(i in 1:ncol(com)) {
+  cat(com[,i], '\n')
+}
+#결과깂
+#red green 
+#red blue 
+#red black 
+#red white 
+#green blue 
+#green black 
+#green white 
+#blue black 
+#blue white 
+#black white 
+
+#각각의 대한 평균값
+agg <- aggregate(iris[,-5], by=list(iris$Species),
+                 FUN = mean #mean 평균계산, sd는 표준 편차)
+#트리맵
+ install.packages('treemap')
+ library(treemap)
+ data(GNI2014)
+ head(GNI2014)
+ treemap(GNI2014,
+         index=c('continent','iso3'),
+          vSize='population',
+          vColor='GNI',
+          type='value',
+          #bg.labels='yellow',
+          title='worlds GNI')
+
+
+
+
+
+~~~
+
+
+---
 ## 강의날짜 : 2023-05-11
 ---
 ## 학습내용 :
