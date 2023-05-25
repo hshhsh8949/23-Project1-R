@@ -1,5 +1,36 @@
 ## 이름 :  함승현
 ---
+## 강의날짜 : 2023-05-25
+---
+## 학습내용 :
+~~~r
+install.packages('fmsb')
+library(fmsb)
+
+#(1) 데이터 준비
+score <- c(80,60,95,85,40)
+max.score <- rep(100,5)
+min.score <- rep(0,5)
+ds <- rbind(max.score,min.score, score)
+ds <- data.frame(ds)
+colnames(ds) <- c('국어','영어', '수학','물리', '음악')
+ds
+
+#(2)방사형 차트
+radarchart(ds,
+           pcol='dark green',
+           pfcol=rgb(0.2,0.5,0.5,0.5),
+           plwd=3,
+           cglcol='grey',
+           cglty=1,
+           cglwd=0.8,
+           axistype=1,
+           seg=4,
+           axislabcol='grey',
+           caxislabels = seq(0,100,25)
+)
+
+~~~
 ## 강의날짜 : 2023-05-18
 ---
 ## 학습내용 :
